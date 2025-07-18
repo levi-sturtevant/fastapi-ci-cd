@@ -1,0 +1,19 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'your-region-docker.pkg.dev/YOUR_PROJECT/YOUR_REPO/fastapi-app:$SHORT_SHA', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'your-region-docker.pkg.dev/YOUR_PROJECT/YOUR_REPO/fastapi-app:$SHORT_SHA']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'fastapi-app',
+        '--image', 'your-region-docker.pkg.dev/YOUR_PROJECT/YOUR_REPO/fastapi-app:$SHORT_SHA',
+        '--region', 'your-region',
+        '--platform', 'managed',
+        '--allow-unauthenticated'
+      ]
+images:
+  - 'your-region-docker.pkg.dev/YOUR_PROJECT/YOUR_REPO/fastapi-app:$SHORT_SHA'
