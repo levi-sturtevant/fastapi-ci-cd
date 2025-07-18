@@ -19,7 +19,7 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
 
-    - name: Configure Docker for Artifact Registry
+    - name: Configure DockeR for Artifact Registry
       run: gcloud auth configure-docker us-east4-docker.pkg.dev
 
     - name: Build and push Docker image
