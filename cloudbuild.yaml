@@ -1,5 +1,6 @@
+logsBucket: null
 options:
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logging: CLOUD_LOGGING_ONLY
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-east4-docker.pkg.dev/user-portal-399420/fastapi-ci-cd/fastapi-app:$SHORT_SHA', '.']
