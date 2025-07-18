@@ -24,7 +24,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        IMAGE="your-region-docker.pkg.dev/$GCP_PROJECT/$ARTIFACT_REPO/fastapi-app:$GITHUB_SHA"
+        IMAGE="us-east4-docker.pkg.dev/$GCP_PROJECT/$ARTIFACT_REPO/fastapi-app:$GITHUB_SHA"
         docker build -t $IMAGE .
         docker push $IMAGE
       env:
@@ -39,4 +39,4 @@ jobs:
           --platform=managed \
           --allow-unauthenticated
       env:
-        IMAGE: "your-region-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/${{ secrets.ARTIFACT_REPO }}/fastapi-app:${{ github.sha }}"
+        IMAGE: "us-east4-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/${{ secrets.ARTIFACT_REPO }}/fastapi-app:${{ github.sha }}"
